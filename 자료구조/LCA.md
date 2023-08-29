@@ -10,7 +10,7 @@
 - (이진) 트리 구조에서 특정 자식들이 공통의 부모를 갖고 있는지 확인하려면?
 <center>
   <img
-    src="image.png"
+    src=![image](https://github.com/lynne921/Ssabalja/assets/119817396/92540474-a63a-4e74-9a10-4f17585740fe)
     width="500"
     height="350"
   />
