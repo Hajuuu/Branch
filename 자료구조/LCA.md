@@ -89,11 +89,11 @@
 
 3. 세그먼트 트리를 통해 발견된 순서에 따른 쿼리 가능
 
-  ![세그먼트 트리]https://github.com/lynne921/Ssabalja/assets/119817396/180ee9fe-c7d0-4a9e-9aa0-f17eaec10b19
+  ![세그먼트 트리](https://github.com/lynne921/Ssabalja/assets/119817396/180ee9fe-c7d0-4a9e-9aa0-f17eaec10b19)
 
 ### DP
 
-![트리 예시 for segment tree]https://github.com/lynne921/Ssabalja/assets/119817396/f25df506-0fd9-44d9-b7bd-bea5e36af6f7
+![트리 예시 for segment tree](https://github.com/lynne921/Ssabalja/assets/119817396/180ee9fe-c7d0-4a9e-9aa0-f17eaec10b19)
 
 #### 아이디어
 
