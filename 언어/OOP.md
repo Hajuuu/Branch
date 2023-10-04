@@ -1,12 +1,17 @@
 # OOP IS A PIE
 ## 목차
 * OOP
+
 * A
+
 * P + I
+
 * E
 ## OOP : Object Oriented Program; 객체지향 프로그래밍
 - 객체 : 속성(멤버변수) + 기능(메서드)
+
 - 클래스 : 객체를 만드는 틀
+
 - 인터페이스 : 클래스를 만드는 틀
   
 ## A : Abstraction; 추상화
@@ -17,10 +22,10 @@
 - 장점 : 개념의 복잡성 감소, 코드 재사용성 증가
 - 단점 : 설계의 복잡성 증가, 과도한 일반화
   
-    - 다음에 나오는 다형성과 연계되어 동작
+    - 다음에 나오는 다형성과 연계
 
 - 추상화 예제
-
+  
 ```JAVA
 // 베인 : A(평타), Q(구르기), W(은화살), E(선고), R(결전의 시간)
 public Vayne {
@@ -86,9 +91,10 @@ public Caitlyn {
     - 자바에서 하나의 객체가 여러가지 타입을 가질 수 있음을 의미
 
 - 상속 : 한 클래스가 다른 클래스의 멤버 변수와 메서드를 물려받는 성질
-    - 부모 클래스 → 자식 클래스 : 참조 가능
-    - Parent A = new Child();
-    - ![제목 없음](https://github.com/lynne921/Ssabalja/assets/119817396/12213b19-4f10-493b-a2df-027d48327af7)
+  
+### 부모 클래스 → 자식 클래스 : 참조 가능
+#### Parent A = new Child();
+![제목 없음](https://github.com/lynne921/Ssabalja/assets/119817396/12213b19-4f10-493b-a2df-027d48327af7)
 
 1. new : A 객체의 세부 속성을 저장할 메모리 공간을 확보
 2. Child() : 자식 객체의 생성자를 통해 해당 메모리 공간에 자식 객체를 만듦
@@ -96,9 +102,9 @@ public Caitlyn {
     <br>
 ※ 부모 클래스 타입의 자식 객체를 만든다는 뜻 : 오버라이딩 된 자식객체 모양, 부모가 가진 모든 함수 사용가능
 
-    - 자식 클래스 → 부모 클래스 : 일반적으로 참조 불가능
-    - Child A = new Parent();
-    - ![제목 없음3](https://github.com/lynne921/Ssabalja/assets/119817396/62362784-50f7-43df-b995-1fd2c9174810)
+### 자식 클래스 → 부모 클래스 : 일반적으로 참조 불가능
+#### Child A = new Parent();
+![제목 없음3](https://github.com/lynne921/Ssabalja/assets/119817396/62362784-50f7-43df-b995-1fd2c9174810)
 
 1. new : A 객체의 세부 속성을 저장할 메모리 공간을 확보
 2. Parent() : 부모 객체의 생성자를 통해 해당 메모리 공간에 부모 객체를 만듦
@@ -169,7 +175,7 @@ public Caitlyn implements Champion {
 public static void main(String[] args) {
     // Polymorphism
     Champion 빙봉이 = new Vayne();
-    Champion 아진잉 = new Vayne();
+    Champion 아진잉 = new Caitlyn();
 
     빙봉이.Q(); // 구른다
     아진잉.Q(); // 쏜다
@@ -180,10 +186,15 @@ public static void main(String[] args) {
 ```
 ## E : Encapsulation; 캡슐화
 - 접근 지정자(제한자)를 통해 구현
+  
     - public : 다른 패키지의 클래스 접근 가능
+      
     - private : 같은 패키지의 클래스와 상속받은 클래스만 접근 가능
+      
     - default(package-private) : 같은 패키지 내 상속받은 클래스만 접근 가능
+      
     - protected : 현재 클래스만 사용 가능
+      
 ※ 동작 원리 : JVM에서 해당 클래스를 참조할 때, 이러한 접근 제한자를 식별
 
 ```
@@ -243,9 +254,28 @@ public Vayne implements Champion {
         return instance;
     }
 
-    // 치속 터짐 or 고연포 구매 등등
     public void set사거리(int add) {
         instance.사거리 += add;
     }
+    ...
+}
+
+// Another Package
+public static void main(String[] args) {
+    // Polymorphism
+    Champion 빙봉이 = new Vayne();
+    Champion 아진잉 = new Caitlyn();
+
+    빙봉이.attack(미니언, 600); // false;
+
+    for (int i = 1; i++; i <= 5) {
+        빙봉이.attack(아진잉, 550)
+    } // 치속 터짐
+
+    빙봉이.사거리 += 50; // error: 빙봉이.사거리 is not accessible from outside package(Compile Error)
+
+    빙봉이.set사거리(int 50); // No Error
+
+    빙봉이.attack(미니언, 600); // 미니언에게 기본 공격을 한다. + return true;
 }
 ```
