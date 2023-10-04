@@ -1,17 +1,25 @@
-# 목차
-- OOP
-- SOLID
-- 
-# OOP is A PIE
-## 객체
+# OOP IS A PIE
+## 목차
+* OOP
+* A
+* P + I
+* E
+## OOP : Object Oriented Program; 객체지향 프로그래밍
+- 객체 : 속성(멤버변수) + 기능(메서드)
+- 클래스 : 객체를 만드는 틀
+- 인터페이스 : 클래스를 만드는 틀
+  
 ## A : Abstraction; 추상화
-- 공통의 속성이나 기능을 묶어 이름을 붙이는 것
-- 현실 객체 → (추상화) → 클래스 → (추상화) → 추상클래스 / 인터페이스
-- 공통적인 기능 : 추상화
-- 세부적인(다른) 기능 : 구체화
+- 정의 : 공통의 속성이나 기능을 묶어 이름을 붙이는 것
+    - 현실 객체 → (추상화) → 클래스 → (추상화) → 추상클래스 / 인터페이스
+    - 공통적인 기능 : 추상화 / 세부적인(다른) 기능 : 구체화
+
 - 장점 : 개념의 복잡성 감소, 코드 재사용성 증가
 - 단점 : 설계의 복잡성 증가, 과도한 일반화
-- 다음에 나오는 다형성과 연계되어 동작
+  
+    - 다음에 나오는 다형성과 연계되어 동작
+
+- 추상화 예제
 
 ```JAVA
 // 베인 : A(평타), Q(구르기), W(은화살), E(선고), R(결전의 시간)
@@ -31,9 +39,10 @@ public Vayne {
 
     public boolean attack(String 대상, int 거리) {
         if (거리 < 사거리) {
-            System.out.println(대상 + "에게 화살을 쏜다.");
+            System.out.println(대상 + "에게 기본 공격을 한다.");
+            return true;
         }
-        return true;
+        return false;
     }
 
     public void Q(int skill_level) {
@@ -49,7 +58,7 @@ public Caitlyn {
     private final static int 사거리 = 650;
     private static int HP, MP, AD, AS, AP, level;
 
-    public Vayne(int HP, int MP, int AD, int AS, int AP){
+    public Caitlyn(int HP, int MP, int AD, int AS, int AP){
         this.HP = HP;
         this.MP = MP;
         this.AD = AD;
@@ -60,9 +69,10 @@ public Caitlyn {
 
     public boolean attack(String 대상, int 거리) {
         if (거리 < 사거리) {
-            System.out.println(대상 + "에게 총을 쏜다.");
+            System.out.println(대상 + "에게 기본 공격을 한다.");
+            return true;
         }
-        return true;
+        return false;
     }
 
     public void Q(int skill_level) {
@@ -71,18 +81,54 @@ public Caitlyn {
     ...
 }
 ```
-## P : Polymorphism; 다형성
+## P : Polymorphism; 다형성 +  I : Inheritance; 상속
 - 다형성 : 어떤 객체의 속성이나 기능이 상황에 따라 여러 형태를 가질 수 있는 성질
-- 자바에서 하나의 객체가 여러가지 타입을 가질 수 있음을 의미
-- 부모 클래스 → 자식 클래스 : 참조 가능
-- 자식 클래스 → 부모 클래스 : 참조 불가능
-```JAVA
-// 베인 : A(평타), Q(구르기), W(은화살), E(선고), R(결전의 시간)
-public Vayne {
+    - 자바에서 하나의 객체가 여러가지 타입을 가질 수 있음을 의미
 
-    private final static int 사거리 = 550;
+- 상속 : 한 클래스가 다른 클래스의 멤버 변수와 메서드를 물려받는 성질
+    - 부모 클래스 → 자식 클래스 : 참조 가능
+    - Parent A = new Child();
+    - ![제목 없음](https://github.com/lynne921/Ssabalja/assets/119817396/12213b19-4f10-493b-a2df-027d48327af7)
+
+1. new : A 객체의 세부 속성을 저장할 메모리 공간을 확보
+2. Child() : 자식 객체의 생성자를 통해 해당 메모리 공간에 자식 객체를 만듦
+3. Parent A : 생성된 자식 객체를 부모 클래스를 참조하도록 함
+    <br>
+※ 부모 클래스 타입의 자식 객체를 만든다는 뜻 : 오버라이딩 된 자식객체 모양, 부모가 가진 모든 함수 사용가능
+
+    - 자식 클래스 → 부모 클래스 : 일반적으로 참조 불가능
+    - Child A = new Parent();
+    - ![제목 없음3](https://github.com/lynne921/Ssabalja/assets/119817396/62362784-50f7-43df-b995-1fd2c9174810)
+
+1. new : A 객체의 세부 속성을 저장할 메모리 공간을 확보
+2. Parent() : 부모 객체의 생성자를 통해 해당 메모리 공간에 부모 객체를 만듦
+3. Child A : 생성된 부모 객체를 자식 클래스를 참조하도록 함
+    <br>
+※ 부모 객체가 자식 클래스를 참조한다면, 확장된 메서드나 변수 등을 호출할 가능성이 있으므로 사용 못하게 오류 발생(ClassCastException)
+
+- 다형성 + 상속 예제
+```JAVA
+// 챔피언 : A(평타), Q, W, E, R
+public Champion {
+    private static int 사거리;
     private static int HP, MP, AD, AS, AP, level;
 
+    public boolean attack(String 대상, int 거리) {
+        if (거리 < 사거리) {
+            System.out.println(대상 + "에게 기본 공격을 한다.");
+            return true;
+        }
+        return false;
+    }
+    public void Q() {}
+    public void W() {}
+    public void E() {}
+    public void R() {}
+}
+// Inheritance
+// 베인 : A(평타), Q(구르기), W(은화살), E(선고), R(결전의 시간)
+public Vayne implements Champion {
+    private final static int 사거리 = 550;
     public Vayne(int HP, int MP, int AD, int AS, int AP){
         this.HP = HP;
         this.MP = MP;
@@ -92,27 +138,18 @@ public Vayne {
         this.level = 1;
     }
 
-    public boolean attack(String 대상, int 거리) {
-        if (거리 < 사거리) {
-            System.out.println(대상 + "에게 화살을 쏜다.");
-        }
-        return true;
-    }
-
+    @Override
     public void Q(int skill_level) {
         System.out.println("구른다.");
         if (attack) this.AD + 계수/스킬레벨*skill_level;
     }
     ...
 }
-
+// Inheritance
 // 케이틀린 : A(평타), Q(필트오버 피스메이커), W(요들잡이 덫), E(90구경 투망), R(비장의 한발)
-public Caitlyn {
-
-    private final static int 사거리 = 650;
-    private static int HP, MP, AD, AS, AP, level;
-
-    public Vayne(int HP, int MP, int AD, int AS, int AP){
+public Caitlyn implements Champion {
+    private final static int 사거리 = 550;
+    public Caitlyn(int HP, int MP, int AD, int AS, int AP){
         this.HP = HP;
         this.MP = MP;
         this.AD = AD;
@@ -121,20 +158,94 @@ public Caitlyn {
         this.level = 1;
     }
 
-    public boolean attack(String 대상, int 거리) {
-        if (거리 < 사거리) {
-            System.out.println(대상 + "에게 총을 쏜다.");
-        }
-        return true;
-    }
-
+    @Override
     public void Q(int skill_level) {
-        System.out.println("소총을 장전해서 쏜다.");
+        System.out.println("쏜다.");
+        if (attack) this.AD + 계수/스킬레벨*skill_level;
     }
     ...
 }
-```
-## I : Inheritance; 상속
-## E : Encapsulation; 캡슐화
 
-# SOLID
+public static void main(String[] args) {
+    // Polymorphism
+    Champion 빙봉이 = new Vayne();
+    Champion 아진잉 = new Vayne();
+
+    빙봉이.Q(); // 구른다
+    아진잉.Q(); // 쏜다
+
+    빙봉이.attack(미니언, 600); // false;
+    아진잉.attack(미니언, 600); // 미니언에게 기본 공격을 한다. + return true;
+}
+```
+## E : Encapsulation; 캡슐화
+- 접근 지정자(제한자)를 통해 구현
+    - public : 다른 패키지의 클래스 접근 가능
+    - private : 같은 패키지의 클래스와 상속받은 클래스만 접근 가능
+    - default(package-private) : 같은 패키지 내 상속받은 클래스만 접근 가능
+    - protected : 현재 클래스만 사용 가능
+※ 동작 원리 : JVM에서 해당 클래스를 참조할 때, 이러한 접근 제한자를 식별
+
+```
+< Generated by Chat-GPT 3.5 >
+데이터 은닉(Data Hiding):
+캡슐화는 객체의 상태(멤버 변수)를 외부에서 직접 접근하지 못하도록 보호합니다. 이로써 객체의 내부 구현을 숨길 수 있고, 객체의 상태를 외부에서 변경할 때 제한과 검증을 할 수 있습니다.
+
+유지 보수성 개선:
+캡슐화는 객체의 내부 구현을 외부로부터 감추기 때문에 내부 구현 변경이 외부 코드에 영향을 미치지 않습니다. 이로 인해 코드의 유지 보수가 용이해집니다. 내부 구현 변경은 해당 객체의 메서드 시그니처를 변경하지 않으면서 가능합니다.
+
+안정성 향상:
+캡슐화를 사용하면 데이터에 대한 접근을 제어할 수 있으므로, 잘못된 데이터 수정을 방지하고 데이터 무결성을 유지할 수 있습니다. 또한 메서드를 통한 접근을 통해 데이터 일관성을 보장할 수 있습니다.
+
+재사용성 증가:
+캡슐화는 클래스를 독립적으로 개발하고 테스트할 수 있게 합니다. 이로써 클래스를 다른 프로젝트나 모듈에서 재사용하기가 더 쉬워집니다.
+
+확장성 향상:
+객체의 내부 구현을 숨기면 외부에서 해당 객체의 인터페이스에 의존하게 됩니다. 따라서 내부 구현을 변경하더라도 외부 코드에 영향을 미치지 않으면서 새로운 기능을 추가하거나 확장할 수 있습니다.
+
+다형성 구현:
+캡슐화는 다형성(Polymorphism)을 구현하는 데 도움을 줍니다. 다형성은 부모 클래스와 자식 클래스 사이에서 캡슐화를 통해 업캐스팅 및 다운캐스팅을 지원하며, 이를 통해 다양한 객체를 일관된 방식으로 다룰 수 있습니다.
+```
+- 캡슐화 예제
+```JAVA
+// 챔피언 : A(평타), Q, W, E, R
+public Champion {
+    private static int 사거리;
+    private static int HP, MP, AD, AS, AP, level;
+
+    public boolean attack(String 대상, int 거리) {
+        if (거리 < 사거리) {
+            System.out.println(대상 + "에게 기본 공격을 한다.");
+            return true;
+        }
+        return false;
+    }
+    public void Q() {}
+    public void W() {}
+    public void E() {}
+    public void R() {}
+}
+public Vayne implements Champion {
+    // Encapsulation
+    private static int 사거리 = 550;
+    private static Vayne instance;
+    private Vayne(int HP, int MP, int AD, int AS, int AP){
+        instance.HP = HP;
+        instance.MP = MP;
+        instance.AD = AD;
+        instance.AS = AS;
+        instance.AP = AP;
+        instance.level = 1;
+    }
+
+    // SingleTon Pattern
+    public static Vayne getInstance() {
+        return instance;
+    }
+
+    // 치속 터짐 or 고연포 구매 등등
+    public void set사거리(int add) {
+        instance.사거리 += add;
+    }
+}
+```
